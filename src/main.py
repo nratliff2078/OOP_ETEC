@@ -1,18 +1,16 @@
 import asyncio
 import tornado.web
-
-class IndexPage(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Tornado Warning!")
+import index
+import quote
 
 def makeApp():
-    endpoints = [
-        ("/", IndexPage)
+    endpoints=[
+        ("/",index.Handler),
+        ("/quote",quote.Handler)
     ]
     app = tornado.web.Application(endpoints)
     app.listen(8000)
     return app
-
 
 if __name__ == "__main__":
     app = makeApp()
